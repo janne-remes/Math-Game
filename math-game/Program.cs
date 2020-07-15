@@ -33,6 +33,8 @@ namespace math_game
 
                 string syote = "";
 
+                int vertailuLuku = 1;
+
                 if (yhteenVaiVahennys == 1)
                 {
                     oikeaVastaus = luku1 + luku2;
@@ -41,17 +43,24 @@ namespace math_game
                     Console.WriteLine("{0} + {1}", luku1, luku2);
                     syote = Console.ReadLine();
 
-                    if(!int.TryParse(syote, out oikeaVastaus) || int.Parse(syote) != oikeaVastaus)
+                    if (!int.TryParse(syote, out vertailuLuku))
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Peli päättyi syöttövirheeseen!");
+                        jatketaanko = false;
+                    }
+
+                    else if (int.Parse(syote) != oikeaVastaus)
                     {
                         Console.Clear();
                         Console.WriteLine("Vastasit väärin!");
                         jatketaanko = false;
                     }
-                    
-                    else if(int.Parse(syote) == oikeaVastaus)
+
+                    else if (int.Parse(syote) == oikeaVastaus)
                     {
                         pisteet++;
-                        Console.WriteLine("Vastasit oikein!");
+                        Console.WriteLine("\nVastasit oikein!");
                         Console.WriteLine("Jatketaanko? (K/k)");
 
                         syote = Console.ReadLine();
@@ -64,6 +73,7 @@ namespace math_game
                         else
                         {
                             jatketaanko = false;
+                            Console.Clear();
                         }
                     }
                 }
@@ -76,7 +86,14 @@ namespace math_game
                     Console.WriteLine("{0} - {1}", luku1, luku2);
                     syote = Console.ReadLine();
 
-                    if (!int.TryParse(syote, out oikeaVastaus) || int.Parse(syote) != oikeaVastaus)
+                    if (!int.TryParse(syote, out vertailuLuku))
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Peli päättyi syöttövirheeseen!");
+                        jatketaanko = false;
+                    }
+
+                    else if(int.Parse(syote) != oikeaVastaus)
                     {
                         Console.Clear();
                         Console.WriteLine("Vastasit väärin!");
@@ -86,7 +103,7 @@ namespace math_game
                     else if (int.Parse(syote) == oikeaVastaus)
                     {
                         pisteet++;
-                        Console.WriteLine("Vastasit oikein!");
+                        Console.WriteLine("\nVastasit oikein!");
                         Console.WriteLine("Jatketaanko? (K/k)");
 
                         syote = Console.ReadLine();
@@ -99,13 +116,13 @@ namespace math_game
                         else
                         {
                             jatketaanko = false;
+                            Console.Clear();
                         }
                     }
                 }
 
             } while (jatketaanko);
 
-            Console.Clear();
             Console.WriteLine("Sait {0} pistettä", pisteet);
         }
     }
